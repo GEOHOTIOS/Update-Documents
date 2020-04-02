@@ -13,6 +13,14 @@
       "ER_000078"
     ]
   ````
+- 😄新增读卡器配置(config.js)
+  ````javascript
+    cardCapture: {
+      source: 'InputDevice', //可选值 InputDevice 直接读取输入设备的输入值.HardwareService 硬件服务 
+      shakeDelay: 1000 //防抖动 单位ms
+    }
+  ````
+- 💥预先实现了下海信员工卡登陆的功能 待API新增接口及联调测试
 ### 1.0.3 (基于V3.0 beta版)
 - 🐛手动开门优化
 - 💥硬件层中间件API升级
