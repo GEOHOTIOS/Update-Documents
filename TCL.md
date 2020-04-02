@@ -9,6 +9,7 @@
     -62 if (rs.code === 200) {
     +62 if (rs.code === 200 && rs.data && rs.data.docStatus === 0) {
   ````
+- 🔨修复上传参数中缺少girdId的问题
 ### 1.0.1 (可选更新)
 - 🔨修改无法解决的硬件异常依然会调用resolve接口的问题
 - 😄新增可解决的错误列表配置(config.js)
