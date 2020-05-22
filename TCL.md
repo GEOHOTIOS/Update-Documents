@@ -2,6 +2,60 @@
 ### 1.0.9
 - 😄配合硬件V2升级 初始化流程中新增NodeID
 # 前台页面
+## 硬件服务V2+大版本
+### 1.0.0
+- 🐛编码完成
+- 🔨修复测试的问题
+- 🔨进出首页均挂起调度并设置适当的优先级
+- 😄新增配置(config.[hash].js)附加参数 repeatResolveConfiguration
+    ````javascript
+      repeatResolveConfiguration: {
+        scenes: ['Scan'], //场景 Scan:扫描
+        trigger: 'all' //触发方式 equal: 当lp.error.unresolved的errCode === 要解决的问题的errCode all: 只要lp.error.unresolved就触发 空:表示不处理
+      } //自动重复resolve的配置
+    ````
+- 😄新增配置(config.[hash].js)附加参数 deviceException
+    ````javascript
+      deviceException: {
+        resolveLimiter: 3, //异常修复重试次数 此处不设置默认为正无穷
+        limiter: Infinity //异常预制
+      }, //deliver的lp.job.unresolved 的异常重试配置
+    ````
+- 🐛移除配置(config.[hash].js)参数 solvableErrors
+- 🔨完整的addition参数
+  ````javascript
+    addition: {
+    speech: true, //语音播放
+    screen: false, //场景
+    record: false, //语音听写
+    homeReload: {
+      delay: 10 * 1000
+    }, //归档消息推送前的配置用于刷新剩余仓位数展示
+    gripper: {
+      limiterType: 'paper', //self 夹子本身的限制 paper 纸张数的限制
+      limiter: 40 //限制
+    },
+    scanner: {
+      errors: ['ER_000096','ER_000101'], //错误
+      locks: ['scanner-drawer'] //开哪个锁
+    }, //扫描仪错误附加处理 
+    deviceException: {
+      resolveLimiter: 12000, //异常修复重试次数 此处不设置默认为正无穷
+      limiter: Infinity //异常预制
+    }, //设备异常
+    kvStorage: {
+      timeout: 7 * 24 * 60 * 1000
+    }, //本地存储的失效时间
+    cardCapture: {
+      source: 'HardwareService', //可选值 InputDevice 直接读取输入设备的输入值.HardwareService 硬件服务
+      shakeDelay: 1000 //防抖动 单位ms
+    },
+    repeatResolveConfiguration: {
+      scenes: ['Scan'], //场景 Scan:扫描
+      trigger: 'all' //触发方式 equal: 当lp.error.unresolved的errCode === 要解决的问题的errCode all: 只要lp.error.unresolved就触发 空:表示不处理
+    } //自动重复resolve的配置
+  },
+  ````
 ## 硬件层V2大版本
 ### 1.0.3
 - 😄新增取归档件时可以连续去多个箱
