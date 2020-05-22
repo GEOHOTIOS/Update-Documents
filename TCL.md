@@ -7,21 +7,21 @@
 - 🐛编码完成
 - 🔨修复测试的问题
 - 🔨进出首页均挂起调度并设置适当的优先级
-- 😄新增配置(config.[hash].js)附加参数 repeatResolveConfiguration
+- 😄新增配置(chunk-config.[hash].js)附加参数 repeatResolveConfiguration
     ````javascript
       repeatResolveConfiguration: {
         scenes: ['Scan'], //场景 Scan:扫描
         trigger: 'all' //触发方式 equal: 当lp.error.unresolved的errCode === 要解决的问题的errCode all: 只要lp.error.unresolved就触发 空:表示不处理
       } //自动重复resolve的配置
     ````
-- 😄新增配置(config.[hash].js)附加参数 deviceException
+- 😄新增配置(chunk-config.[hash].js)附加参数 deviceException
     ````javascript
       deviceException: {
         resolveLimiter: 3, //异常修复重试次数 此处不设置默认为正无穷
         limiter: Infinity //异常预制
       }, //deliver的lp.job.unresolved 的异常重试配置
     ````
-- 🐛移除配置(config.[hash].js)参数 solvableErrors
+- 🐛移除配置(chunk-config.[hash].js)参数 solvableErrors
 - 🔨完整的addition参数
   ````javascript
     addition: {
