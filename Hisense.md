@@ -3,6 +3,17 @@
 - 💥 实现所有功能
 # 前台页面
 ## 硬件服务V2+ 大版本
+### 1.0.2
+- 🔨deliver最后一步增加目标仓位判断
+### 1.0.1
+- 🔨校验封面条码时增加domainname
+- 🔨只投递不扫描时 文字提示修改
+- 😄新增配置(chunk-config.[hash].js)附加参数 extraDeliverBox
+  ````javascript
+    extraDeliverBox: {
+      codeUniq: false //是否启用条码去重
+    } //附加投递柜
+  ````
 ### 1.0.0
 - 🐛编码完成
 - 🔨修复测试的问题
@@ -25,7 +36,7 @@
 - 🐛移除配置(chunk-config.[hash].js)参数 solvableErrors
 - 🔨完整的addition参数
   ````javascript
-    addition: {
+  addition: {
     speech: true, //语音播放
     screen: false, //场景
     record: false, //语音听写
