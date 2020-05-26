@@ -39,8 +39,8 @@
       delay: 10 * 1000
     }, //归档消息推送前的配置用于刷新剩余仓位数展示
     gripper: {
-      limiterType: 'paper', //self 夹子本身的限制 paper 纸张数的限制
-      limiter: 40 //限制
+      limiterType: 'self', //self 夹子本身的限制 paper 纸张数的限制
+      limiterKey: 'gridHeight' //纸张数 paperCount || gridHeight 全部为大于的逻辑
     },
     scanner: {
       errors: ['ER_000096','ER_000101'], //错误
