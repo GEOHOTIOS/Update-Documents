@@ -5,6 +5,9 @@
 ## 硬件服务V2+ 大版本
 ### 1.0.5 2020/5/27
 - 💥增加对登录信息必要参数的判断 缺失报错
+- 🔨取归档件，单据列表页面，点击返回回到了首页，应该去上一页
+- 🔨调度修复完成后,点击再投一单后页面不能操作了
+- 💥判断门关的标识统一使用tag
 ### 1.0.4
 - 🐛只扫描不投递单据开发权限到所有人员
 - 🐛loading时隐藏倒计时
@@ -162,9 +165,41 @@
   
 
 # 手机端页面
+### 1.0.3 2020/05/28
+- 💥将页面的文字及二维码的配置独立出来 chunk-config.[hash].js
+  ````javascript
+    qrcode: {
+        navTitle: '二维码登录', //导航栏标题
+        navRightBar: '帮助', //导航栏右侧文案
+        tip: '请在将二维码对准扫码区域',//二维码正下方提示文字
+        reload: '重新获取', //刷新按钮文字
+        options: { //二维码配置
+            autoColor: true, //若为 true, 背景图的主要颜色将作为实点的颜色, 即 colorDark,默认 true
+            background: "rgba(0,0,0,0)", //背景
+            backgroundColor: "#FFFFFF", //背景颜色
+            backgroundDimming: "rgba(0,0,0,0)", //叠加在背景图上的颜色, 在解码有难度的时有一定帮助
+            bgSrc: undefined, //背景图片地址
+            binarize: false, //若为 true, 图像将被二值化处理, 未指定阈值则使用默认值
+            binarizeThreshold: 128, //二值化处理的阈值  (0 < threshold < 255)
+            colorDark: "#000000", // 实点的颜色
+            colorLight: "#FFFFFF", //空白区的颜色
+            correctLevel: 1, //容错级别 0-3
+            dotScale: 1, //数据区域点缩小比例  (0 < scale <= 1.0)
+            gifBgSrc: undefined, //欲嵌入的背景图 gif 地址,设置后普通的背景图将失效。设置此选项会影响性能
+            logoBackgroundColor: "rgba(255,255,255,1)",
+            logoCornerRadius: 8, //标识及其边框的圆角半径, 默认为0
+            logoMargin: 0, //logo外边距
+            logoScale: 0.2, //用于计算 LOGO 大小的值, 过大将导致解码失败, LOGO 尺寸计算公式 logoScale*(size-2*margin)
+            logoSrc: undefined, //logo的图片地址
+            margin: 20, //二维码整体外边距
+            size: 0.5, //尺寸, 长宽一致, 包含外边距 <1 表示比例 >1表示px
+            whiteMargin: true,//若设为 true, 背景图外将绘制白色边框
+        }
+    }
+  ````
 ### 1.0.2
 - 🐛移除显示优化 变更为任何时候均允许无条件刷新二维码
-- 二维码尺寸减小20%
+- 🐛二维码尺寸减小20%
 ### 1.0.1
 - 😄新增下拉刷新页面的功能
 ### 1.0.0
