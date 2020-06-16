@@ -3,6 +3,28 @@
 - 💥 实现所有功能
 # 前台页面
 ## 硬件服务V2+ 大版本
+### 1.0.4 20206/16
+- 🐛修复部分情况下可能卡死的问题
+- 🐛两处流程问题
+- 💥增加非激活状态的ping/pong的处理、增加ping间隔的growfactor
+  ```javascript
+    websocket: {
+      maxReconnectionDelay: 5000, //最大重连间隔
+      minReconnectionDelay: 300, //最小重连间隔
+      reconnectionDelayGrowFactor: 1.2, //重试间隔成长速度
+      connectionTimeout: 5000, //重连超时时间
+      defaultHeartCheckDelay: 30 * 1000, //默认心跳检查周期
+      heartCheckDelayGrowFactor: 1.5, //心跳检查周期成长速度
+      heartCheckTimeout: 3 * 1000 //心跳检查超时时间
+    }
+  ```
+- 💥增加流程日志 增加控制台日志的清理周期设置
+  ```javascript
+    logger: {
+      level: 'trace', //日志级别 可选值: trace debug info warn error
+      clearDelay: 7 * 24 * 60 * 1000 //整型值 默认一周 单位ms
+    }
+  ```
 ### 1.0.3 2020/6/5
 - 🐛遮罩时暂停倒计时,倒计时结束后关闭对话框
 - 🐛硬件异常的全屏遮罩变为阻止用户有调度行为流程的对话框,即硬件异常后依然可以取件员取件、手动开锁
