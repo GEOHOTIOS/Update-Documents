@@ -3,6 +3,42 @@
 - 💥 实现所有功能
 # 前台页面
 ## 硬件服务V2+ 大版本
+### 1.0.4 2020/6/17
+### 1.0.4 20206/16
+- 🐛修复部分情况下可能卡死的问题
+- 😄新增扫描完成后的配置
+  ```javascript
+    addition: {
+      scanner: {
+      errors: ['ER_000096','ER_000101'],
+      locks: ['scanner-drawer'],
+      completion: { //扫描完成后的检测
+        detecion: 'paper-count', //检测的类型
+        limiter: 60, // 阈值 依据A4纸每张0.104mm的厚度及仓位高度15mm 及贴票及鱼鳞贴的情况叠加算出的默认阈值
+        overLimiterText: '检测到本次投递已超过60张，请取出交到前台' //超限后的文字提示
+      }
+    },
+    }
+  ```
+- 💥增加非激活状态的ping/pong的处理、增加ping间隔的growfactor
+  ```javascript
+    websocket: {
+      maxReconnectionDelay: 5000, //最大重连间隔
+      minReconnectionDelay: 300, //最小重连间隔
+      reconnectionDelayGrowFactor: 1.2, //重试间隔成长速度
+      connectionTimeout: 5000, //重连超时时间
+      defaultHeartCheckDelay: 30 * 1000, //默认心跳检查周期
+      heartCheckDelayGrowFactor: 1.5, //心跳检查周期成长速度
+      heartCheckTimeout: 3 * 1000 //心跳检查超时时间
+    }
+  ```
+- 💥增加流程日志 增加控制台日志的清理周期设置
+  ```javascript
+    logger: {
+      level: 'trace', //日志级别 可选值: trace debug info warn error
+      clearDelay: 7 * 24 * 60 * 1000 //整型值 默认一周 单位ms
+    }
+  ```
 ### 1.0.3 2020/6/5
 - 🐛所有用户流程统一为员工卡登录
 - 🐛硬件异常的全屏遮罩变为阻止用户有调度行为流程的对话框,即硬件异常后依然可以取件员取件、手动开锁、投递超厚单据、投递采购类单据

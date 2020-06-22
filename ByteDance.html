@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ByteDance.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E5%90%8E%E5%8F%B0%E9%A1%B5%E9%9D%A2">后台页面</h1>
+<h3 id="100">1.0.0</h3>
+<ul>
+<li>💥 实现所有功能</li>
+</ul>
+<h1 id="%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2">前台页面</h1>
+<h2 id="%E7%A1%AC%E4%BB%B6%E6%9C%8D%E5%8A%A1v2-%E5%A4%A7%E7%89%88%E6%9C%AC">硬件服务V2+ 大版本</h2>
+<h3 id="101-2020618">1.0.1 2020/6/18</h3>
+<ul>
+<li>🔨首页的财务值班号缺少双引号</li>
+<li>🔨嵌入的飞书的登出页面登出会显示个404。优化</li>
+<li>🔨投递及打印封面、打印完成界面打印封面按钮下文字不对，按照话术改</li>
+<li>🔨待打印单据待打印单据 表格单号、单据类型列应居左，总计金额居右，币种、提交日期居中</li>
+<li>🔨未通过财务复审的单据，界面弹出提示询问用户是否交单，可以取消操作，也可以确定后继续投递。 1第一次扫码弹出提示后现在没有倒计时，界面超时不动，界面应该有读秒，超时无操作应返回主界面。放弃后第二次再扫码会读秒，但是是继续读秒，并没有重置读秒时间，应为弹出提示后重新计时 2提示界面点确定投单投递时发现界面没进入下一步</li>
+<li>🔨进入投递界面后，单据未放好位置或手没有离开投递口，界面上关门仓门按钮不可用，待条件满足后才可以点击关门按钮 界面异常流程变更 1修改成关闭仓门按钮亮时，取消按钮变成不可用。点击取消时，弹出提示，让用确认已经取出单据，弹出的提示框上点击关门并返回。2界面超时后流程改变，弹出提示用户取出单据，界面上关门投递按钮不再可用，只能退出单据并关门。3 现在进入页面时关闭仓门按钮是可用的，应进入投递界面时按钮不可用。4 点击关闭仓门后，会提示正在关闭投递舱门，这个舱字错了，改成仓。</li>
+<li>🔨增加厚度检测的流程</li>
+<li>🔨投单页面或单据超厚退单页面超时后，弹出提示停在相应页面，待人工取出单据后点击关门按钮关门并返回主界面，不能再进行投递操作 1继续投递时，如果上一个操作没完成，收单机会等待现有操作完成。但是已经进入投递界面后，退出按钮现在可以点击，退出到选择操作界面后，仓门又打开了。继续投递时进入界面后，退出（取消）按钮应不可用，等待仓门打开后，取消按钮才可用，否则硬件调度后界面已经退回到选择操作界面了。调度没返回，倒计时也不应该开始。</li>
+<li>🔨对公单据页面，当暂存格满后，会提示不可投递。对公单据只看所有对公归档箱的容量总和</li>
+<li>🔨可投递单据列表 表格单号、单据类型列应居左，总计金额居右，币种、提交日期居中</li>
+<li>🔨投单 把封面和票据放入专用信封，点击投单按钮后，在收单机前进行扫码，收单机校验单据是否可以投递。不能投递时弹出消息提示，可以手工录入单号。如果未通过财务复审的单据，提示用户，待用户确认投递后允许投递。可以投递时，收单机自动打开仓门，用户把单据放入收单机投递口，位置放置正确且手离开投递口后，收单机界面关门按钮可用。点击关门后，收单机会检查单据厚度，如果未超过1.3cm,收单机收单。如果超过厚度，收单机提示用户超厚，并自动打开仓门，请用户取走单据点击关门按钮关闭仓门。单据放入暂存格，并给用户推送退单消息通知 界面没有返回按钮，但是点击相应位置会返回上一步</li>
+<li>🔨投单 把封面和票据放入专用信封，点击投单按钮后，在收单机前进行扫码，收单机校验单据是否可以投递。不能投递时弹出消息提示，可以手工录入单号。如果未通过财务复审的单据，提示用户，待用户确认投递后允许投递。可以投递时，收单机自动打开仓门，用户把单据放入收单机投递口，位置放置正确且手离开投递口后，收单机界面关门按钮可用。点击关门后，收单机会检查单据厚度，如果未超过1.3cm,收单机收单。如果超过厚度，收单机提示用户超厚，并自动打开仓门，请用户取走单据点击关门按钮关闭仓门。单据放入暂存格，并给用户推送退单消息通知 关门后能正确检测单据厚度不超过3cm，未超厚可以投递,超厚界面提示用户，并打开仓门，请用户退单。退单时手离开投递口且机器检测到收单机内没有单据，关门按钮可用，点击按钮后自动关闭仓门</li>
+<li>🔨投单 把封面和票据放入专用信封，点击投单按钮后，在收单机前进行扫码，收单机校验单据是否可以投递。不能投递时弹出消息提示，可以手工录入单号。如果未通过财务复审的单据，提示用户，待用户确认投递后允许投递。可以投递时，收单机自动打开仓门，用户把单据放入收单机投递口，位置放置正确且手离开投递口后，收单机界面关门按钮可用。点击关门后，收单机会检查单据厚度，如果未超过1.3cm,收单机收单。如果超过厚度，收单机提示用户超厚，并自动打开仓门，请用户取走单据点击关门按钮关闭仓门。单据放入暂存格，并给用户推送退单消息通知 投单页面或单据超厚退单页面超时后，弹出提示停在相应页面，待人工取出单据后点击关门按钮关门并返回主界面，不能再进行投递操作</li>
+<li>🔨可取退单据列表 存在暂存格内的单据员工都可以列示并取出，审核驳回的退单和收单员投递的退单可以请他人凭借取件码代取单据。 1 提交时间改成提交日期，只要日期不要时间，现在显示出了时间 2表格单号、单据类型、单据状态列应居左，总计金额居右，币种、提交日期居中</li>
+<li>🔨退单 用户选择待退后，点击取件按钮，收单机自动把待退单据放入投递口并打开仓门。待用户取出单据后，收单机上关门仓门按钮变为可用。用户点击关闭仓门后展示退单完成页面。进入退单界面后，单据未取出或手没有离开投递口，界面上关门仓门按钮不可用，待条件满足后才可以点击关门按钮。打开页面时关门按钮应不可用，现在是可点的。应取出后才不可以点击</li>
+<li>🔨退单 用户选择待退后，点击取件按钮，收单机自动把待退单据放入投递口并打开仓门。待用户取出单据后，收单机上关门仓门按钮变为可用。用户点击关闭仓门后展示退单完成页面。退单页面超时后，弹出提示并停在相应页面，待人工处理后返回主界面。</li>
+<li>🔨收单员取归档单据 查看归档箱单据明细 选择待取归档箱后，可以正确查看到归档箱内各单据 1 返回按钮应返回到选取归档箱页面，不应返回主界面 2 列头单据条码应改成单据编号 3 归档日期改成yyyy-mm-dd格式，单据编号，单据类型，提单人应居左，归档日期居中 4 oa接口返回的提单人是简称，需要确认（低优先） 5 页面没有倒计时</li>
+<li>🔨收单员取归档单据 取件 点击取件按钮后自动弹开对应的归档箱门，取出单据后关闭仓门，关闭仓门后自动给各单据提单人发送消息通知，告知单据已准备送到共享中心 取件操作顺利完成，关闭仓门进入取件完成界面  1归档箱门关闭后界面偶发没有进入下一步界面，但是数据变了 2取件完成界面列名和文字居左或居中与单据列表要一致</li>
+<li>🔨收单员取归档单据 取件 点击取件按钮后自动弹开对应的归档箱门，取出单据后关闭仓门，关闭仓门后自动给各单据提单人发送消息通知，告知单据已准备送到共享中心 取件页面超时后自动返回主界面。下次用户投递时会提示用户请帮忙先关对应仓门 取件界面弹开归档门后倒计时没生效，显示60秒无变化，应计时3分钟。超时返回主界面，下次其它用户点任何按钮都提示先关门</li>
+<li>🔨收单员取逾期退单 查看逾期退单列表界面 可以正确查看到逾期退单列表，首次打开按照默认的逾期天数展示数据，可以按照逾期天数筛选数据，也可以输入单号查询数据。首次打开按照默认的逾期天数展示数据，表格内容正确，占用天数显示为默认的天数 1 打开界面默认值未展示出来 2 交单日期只要日期不要时间，文本类型列居左，数字类型列居右，日期和固定长度列居中 3 排序按照逾期日期（降序）和单号（升序）排序</li>
+<li>🔨收单员取逾期退单 查看逾期退单列表界面 可以正确查看到逾期退单列表，首次打开按照默认的逾期天数展示数据，可以按照逾期天数筛选数据，也可以输入单号查询数据。可以多选、全选单据，下方选择份数显示正确 1下方应显示已选份数，不是全部份数 2 全选后不能取消其中某个单据，需要改正确</li>
+<li>🔨收单员取逾期退单 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。开门取出归档单据流程正确，正确弹出归档箱 1取件列表需要与单据列表内的列名，内容和对齐，排序规则一致 2 开门后要倒计时3分钟，现在没有倒计时</li>
+<li>🔨收单员取逾期退单 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。取件完成自动弹出归档箱仓门，收单员放入归档单据并关门，关门后正确进入下一页面。界面没有倒计时读秒，应倒计时3分钟</li>
+<li>🔨收单员取逾期退单 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。 取件完成后提示用户，已取件列表显示正确。1已取件列表需要与单据列表内的列名，内容和对齐，排序规则一致</li>
+<li>🔨管理界面 手动开门 可以手动打开归档箱仓门，手动打开或关闭投递仓门 开门关门前增加状态判断 解决开锁界面  改成投递口， 归档箱1的名称， 归档箱2的名称（名称按后台设置的取）。开投递口门会卡死界面。关门界面现在是关归档箱门，要改成关投递口。</li>
+<li>🔨收单员取审核超期单据 选取待取逾期单据界面 收单员点击取逾期单据按钮后，进入功能选择界面。界面上展示取审核超期单据按钮。界面按钮上对应的单据数量正确，按照天数默认值计算单据数量</li>
+<li>🔨收单员取审核超期单据 查看审核超期单据列表界面可以正确查看到审核超期单据，首次打开按照默认的审核超期天数展示数据，可以按照超期天数筛选数据，也可以输入单号查询数据。首次打开按照默认的超期天数展示数据，表格内容正确，占用天数显示为默认的天数</li>
+<li>🔨收单员取审核超期单据 查看审核超期单据列表界面可以正确查看到审核超期单据，首次打开按照默认的审核超期天数展示数据，可以按照超期天数筛选数据，也可以输入单号查询数据。可以按照超期天数筛选数据，也可以按照单号筛选数据。按照单号筛选数据时，超期天数不起作用。筛选数据应正确</li>
+<li>🔨收单员取审核超期单据 查看审核超期单据列表界面可以正确查看到审核超期单据，首次打开按照默认的审核超期天数展示数据，可以按照超期天数筛选数据，也可以输入单号查询数据。可以多选、全选单据，下方选择份数显示正确</li>
+<li>🔨收单员取审核超期单据 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。选择归档箱界面批次号、单据数量、使用率显示正确</li>
+<li>🔨收单员取审核超期单据 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。开门取出归档单据流程正确，正确弹出归档箱</li>
+<li>🔨收单员取审核超期单据 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。收单机自动把单据抓到归档箱，界面列表和抓取进度显示正确，已经取完的单据界面显示为绿色。正在取的单据状态显示为取件中，界面下方取件份数显示正确</li>
+<li>🔨收单员取审核超期单据 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。取件完成自动弹出归档箱仓门，收单员放入归档单据并关门，关门后正确进入下一页面。</li>
+<li>🔨收单员取审核超期单据 取件 点选取件按钮后，选择要放入的归档箱，然后自动弹开对应归档箱的仓门。取出单据并关门后，收单机自动把所选单据放入归档箱。界面提示单据已经取出，并自动弹开仓门。待收单员把已归档单据放回归档箱内并关闭仓门后，提示用户取件完成。取件完成后提示用户，已取件列表显示正确。</li>
+</ul>
+<h3 id="100-202066">1.0.0 20206/6</h3>
+<ul>
+<li>😄实现基本功能</li>
+</ul>
+
+</body>
+</html>
